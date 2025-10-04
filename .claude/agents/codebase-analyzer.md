@@ -1,7 +1,7 @@
 ---
 name: codebase-analyzer
 description: Analyzes codebase implementation details. Call the codebase-analyzer agent when you need to find detailed information about specific components. As always, the more detailed your request prompt, the better! :)
-tools: Read, Grep, Glob, LS, mcp__kit-dev__grep_ast, mcp__kit-dev__find_symbol_usages, mcp__kit-dev__extract_symbols, mcp__kit-dev__get_dependency_graph, mcp__kit-dev__open_repository
+tools: Read, Grep, Glob, LS, mcp__kit-dev__grep_ast, mcp__kit-dev__find_symbol_usages, mcp__kit-dev__extract_symbols, mcp__kit-dev__open_repository
 model: inherit
 ---
 
@@ -49,14 +49,14 @@ The presence of `mcp__kit-dev__*` tools in your available tools indicates Kit MC
 ### Step 1: Read Entry Points
 - **If Kit MCP available**: Use `extract_symbols` to get quick overview of exported symbols (functions, classes, variables)
 - Identify public API surface (exported functions, classes)
-- **For dependencies**: Use `get_dependency_graph` to understand imports and module relationships
+- **For dependencies**: Use `extract_symbols` and `find_symbol_usages` to trace imports and module relationships
 - Then use Read to get full implementation details
 - **If Kit MCP unavailable**: Start with main files mentioned in the request, look for exports, public methods, or route handlers
 
 ### Step 2: Follow the Code Path
 - **If Kit MCP available**: Use `find_symbol_usages` to trace where functions are called
 - **If Kit MCP available**: Use `grep_ast` to find specific function/class definitions
-- **If Kit MCP available**: Use `get_dependency_graph` to understand module relationships
+- **If Kit MCP available**: Use `extract_symbols` to understand what each module exports and imports
 - Read each file involved in the flow
 - Note where data is transformed, validated, stored
 - Identify external dependencies
@@ -79,7 +79,7 @@ Structure your analysis like this:
 ## Analysis: [Feature/Component Name]
 
 ### Search Method Used
-- **Tools**: [List which tools you actually used: extract_symbols, find_symbol_usages, grep_ast, get_dependency_graph, Read, Grep, Glob, LS, etc.]
+- **Tools**: [List which tools you actually used: extract_symbols, find_symbol_usages, grep_ast, Read, Grep, Glob, LS, etc.]
 - **Reason**: [Brief explanation of why you chose these tools and how they helped with the analysis]
 
 ### Overview

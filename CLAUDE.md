@@ -7,11 +7,11 @@ This project uses Kit MCP (codebase intelligence) and Ref MCP (documentation res
 ### For Local Codebase Work
 
 **Use Kit MCP when:**
-- Finding symbol definitions → `grep_ast`, `extract_symbols`
+- Finding symbol definitions → `extract_symbols`
 - Understanding code structure → `get_file_tree`, `extract_symbols`
 - Tracing symbol usage → `find_symbol_usages`
-- Analyzing dependencies → `get_dependency_graph`
-- Pattern matching on AST → `grep_ast`
+- Tracing dependencies manually → `extract_symbols` + `find_symbol_usages`
+- Searching code patterns → `grep_code` (literal) or `search_code` (pattern)
 
 **Use built-in tools when:**
 - Reading specific files → `Read` (faster, complete content)
@@ -68,8 +68,10 @@ Commands will automatically use MCP-enhanced agents when available:
 - **`mcp-package-researcher`**: Deep package research using Ref MCP (docs) + Kit MCP package search (source)
   - Use when: Planning package integration, debugging third-party libraries, evaluating packages
 
-- **`codebase-dependency-tracer`**: Maps dependency relationships using Kit MCP's get_dependency_graph
-  - Use when: Understanding module boundaries, tracing import chains, analyzing architecture
+- **`codebase-dependency-tracer`**: Maps dependency relationships through manual import tracing
+  - Use when: Understanding module boundaries, tracing import chains
+  - Note: Manual aggregation using extract_symbols + find_symbol_usages
+  - For automated graphs: See thoughts/shared/research/dependency-analysis-options.md
 
 ## Graceful Degradation
 
