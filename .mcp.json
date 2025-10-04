@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "kit-dev": {
+      "command": "npx",
+      "args": ["-y", "@kitprotocol/mcp-server-kit"],
+      "env": {
+        "KIT_API_KEY": "${KIT_API_KEY:-}"
+      }
+    },
+    "ref": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-ref"],
+      "env": {}
+    }
+  }
+}

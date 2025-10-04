@@ -3,8 +3,36 @@
     "allow": [
       "Bash(./hack/spec_metadata.sh)",
       "Bash(hack/spec_metadata.sh)",
-      "Bash(bash hack/spec_metadata.sh)"
+      "Bash(bash hack/spec_metadata.sh)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "WebSearch",
+      "mcp__kit-dev__open_repository",
+      "mcp__kit-dev__get_file_tree",
+      "mcp__kit-dev__extract_symbols",
+      "mcp__kit-dev__find_symbol_usages",
+      "mcp__kit-dev__grep_code",
+      "mcp__kit-dev__grep_ast",
+      "mcp__kit-dev__deep_research_package",
+      "mcp__kit-dev__package_search_hybrid",
+      "mcp__kit-dev__package_search_grep",
+      "mcp__kit-dev__package_search_read_file",
+      "mcp__Ref__ref_search_documentation",
+      "mcp__Ref__ref_read_url"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Bash(curl:*)",
+      "Bash(rm -rf:*)"
     ]
   },
-  "enableAllProjectMcpServers": false
+  "enableAllProjectMcpServers": false,
+  "enabledMcpjsonServers": ["kit-dev", "ref"]
 }
