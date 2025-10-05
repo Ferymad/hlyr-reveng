@@ -13,12 +13,21 @@ You are tasked with conducting comprehensive research across the codebase to ans
 
 ## Initial Setup:
 
-When this command is invoked, respond with:
+When this command is invoked:
+
+1. **Check if Kit MCP is available and automatically initialize:**
+   - If Kit MCP available: Use `open_repository` to load current repository context
+     - This enables AST-aware tools and result caching for all agents
+     - Repository ID is managed internally by agents
+   - If Kit MCP unavailable: Proceed with traditional tools (graceful degradation)
+   - This happens automatically and transparently
+
+2. **Then respond with:**
 ```
 I'm ready to research the codebase. Please provide your research question or area of interest, and I'll analyze it thoroughly by exploring relevant components and connections.
 ```
 
-Then wait for the user's research query.
+3. **Wait for the user's research query.**
 
 ## Steps to follow after receiving the research query:
 
@@ -43,12 +52,14 @@ Then wait for the user's research query.
    - Use the **codebase-locator** agent to find WHERE files and components live
    - Use the **codebase-analyzer** agent to understand HOW specific code works (without critiquing it)
    - Use the **codebase-pattern-finder** agent to find examples of existing patterns (without evaluating them)
+   - Use the **codebase-dependency-tracer** agent to map module relationships and dependency chains
 
-   **IMPORTANT**: All agents are documentarians, not critics. They will describe what exists without suggesting improvements or identifying issues.
+   **For external package research:**
+   - Use the **mcp-package-researcher** agent for deep package research (combines official docs + source code analysis)
+   - Use the **external-doc-researcher** agent for general documentation and web resources
+   - **CRITICAL**: When using external doc agents, instruct them to return LINKS with their findings, and INCLUDE those links in your final report
 
-   **For web research (only if user explicitly asks):**
-   - Use the **web-search-researcher** agent for external documentation and resources
-   - IF you use web-research agents, instruct them to return LINKS with their findings, and please INCLUDE those links in your final report
+   **IMPORTANT**: All codebase agents automatically use Kit MCP tools when available, or gracefully degrade to traditional tools. All agents are documentarians, not critics. They describe what exists without suggesting improvements or identifying issues.
 
    **For Linear tickets (if relevant):**
    - Use the **linear-ticket-reader** agent to get full details of a specific ticket
