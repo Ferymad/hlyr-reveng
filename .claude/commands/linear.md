@@ -31,34 +31,27 @@ Then wait for the user's input.
 
 ## Team Workflow & Status Progression
 
-The team follows a specific workflow to ensure alignment before code implementation:
+The workflow follows a 6-state progression optimized for solo development with AI assistance:
 
 1. **Triage** → All new tickets start here for initial review
-2. **Spec Needed** → More detail is needed - problem to solve and solution outline necessary
-3. **Research Needed** → Ticket requires investigation before plan can be written
-4. **Research in Progress** → Active research/investigation underway
-5. **Research in Review** → Research findings under review (optional step)
-6. **Ready for Plan** → Research complete, ticket needs an implementation plan
-7. **Plan in Progress** → Actively writing the implementation plan
-8. **Plan in Review** → Plan is written and under discussion
-9. **Ready for Dev** → Plan approved, ready for implementation
-10. **In Dev** → Active development
-11. **Code Review** → PR submitted
-12. **Done** → Completed
+2. **Research** → Investigation and codebase analysis
+3. **Planning** → Implementation plan creation
+4. **In Dev** → Active development
+5. **In Review** → Code review and QA
+6. **Done** → Shipped and complete
 
-**Key principle**: Review and alignment happen at the plan stage (not PR stage) to move faster and avoid rework.
+**Key principle**: Each stage has clear deliverables. Research produces a research document, Planning produces an implementation plan, In Dev produces working code.
 
 ## Important Conventions
 
 ### URL Mapping for Thoughts Documents
 When referencing thoughts documents, always provide GitHub links using the `links` parameter:
-- `thoughts/shared/...` → `https://github.com/humanlayer/thoughts/blob/main/repos/humanlayer/shared/...`
-- `thoughts/allison/...` → `https://github.com/humanlayer/thoughts/blob/main/repos/humanlayer/allison/...`
-- `thoughts/global/...` → `https://github.com/humanlayer/thoughts/blob/main/global/...`
+- `thoughts/shared/...` → `https://github.com/Ferymad/thoughts/blob/main/shared/...`
+- For other thoughts paths, adjust the GitHub URL accordingly
 
 ### Default Values
 - **Status**: Always create new tickets in "Triage" status
-- **Project**: For new tickets, default to "M U L T I C L A U D E" (ID: f11c8d63-9120-4393-bfae-553da0b04fd8) unless told otherwise
+- **Project**: For new tickets, default to "Context101" (ID: 169e5e68-e19e-4811-85aa-d5324490d75e) unless told otherwise
 - **Priority**: Default to Medium (3) for most tasks, use best judgment or ask user
   - Urgent (1): Critical blockers, security issues
   - High (2): Important features with deadlines, major bugs
@@ -66,13 +59,13 @@ When referencing thoughts documents, always provide GitHub links using the `link
   - Low (4): Nice-to-haves, minor improvements
 - **Links**: Use the `links` parameter to attach URLs (not just markdown links in description)
 
-### Automatic Label Assignment
-Automatically apply labels based on the ticket content:
-- **hld**: For tickets about the `hld/` directory (the daemon)
-- **wui**: For tickets about `humanlayer-wui/`
-- **meta**: For tickets about `hlyr` commands, thoughts tool, or `thoughts/` directory
+### Label Assignment
+Available labels to apply based on ticket content:
+- **Bug**: For defects and unexpected behavior
+- **Feature**: For new functionality or enhancements
+- **Improvement**: For optimizations and refinements
 
-Note: meta is mutually exclusive with hld/wui. Tickets can have both hld and wui, but not meta with either.
+Apply labels when clearly indicated by the ticket content.
 
 ## Action-Specific Instructions
 
@@ -294,15 +287,11 @@ When moving tickets through the workflow:
    - Show current status in workflow
 
 2. **Suggest next status:**
-   - Triage → Spec Needed (lacks detail/problem statement)
-   - Spec Needed → Research Needed (once problem/solution outlined)
-   - Research Needed → Research in Progress (starting research)
-   - Research in Progress → Research in Review (optional, can skip to Ready for Plan)
-   - Research in Review → Ready for Plan (research approved)
-   - Ready for Plan → Plan in Progress (starting to write plan)
-   - Plan in Progress → Plan in Review (plan written)
-   - Plan in Review → Ready for Dev (plan approved)
-   - Ready for Dev → In Dev (work started)
+   - Triage → Research (after initial review, needs investigation)
+   - Research → Planning (after research document is complete and approved)
+   - Planning → In Dev (after implementation plan is complete and approved)
+   - In Dev → In Review (after PR is created)
+   - In Review → Done (after review passes and PR is merged)
 
 3. **Update with context:**
    ```
@@ -315,7 +304,6 @@ When moving tickets through the workflow:
 
 ## Important Notes
 
-- Tag users in descriptions and comments using `@[name](ID)` format, e.g., `@[dex](16765c85-2286-4c0f-ab49-0d4d79222ef5)`
 - Keep tickets concise but complete - aim for scannable content
 - All tickets should include a clear "problem to solve" - if the user asks for a ticket and only gives implementation details, you MUST ask "To write a good ticket, please explain the problem you're trying to solve from a user perspective"
 - Focus on the "what" and "why", include "how" only if well-defined
@@ -347,38 +335,25 @@ Remember: The goal is to help a future reader (including yourself) quickly under
 
 ## Commonly Used IDs
 
-### Engineering Team
-- **Team ID**: `6b3b2115-efd4-4b83-8463-8160842d2c84`
+### Solo-Selman Team
+- **Team ID**: `2f08b976-825c-44e3-a5e6-c8221cd1440d`
+
+### Project IDs
+- **Context101**: `169e5e68-e19e-4811-85aa-d5324490d75e`
 
 ### Label IDs
-- **bug**: `ff23dde3-199b-421e-904c-4b9f9b3d452c`
-- **hld**: `d28453c8-e53e-4a06-bea9-b5bbfad5f88a`
-- **meta**: `7a5abaae-f343-4f52-98b0-7987048b0cfa`
-- **wui**: `996deb94-ba0f-4375-8b01-913e81477c4b`
+- **Bug**: `9d0f7717-572d-4de4-8cc8-dc13104ebe74`
+- **Feature**: `4f48124c-d0dc-458d-b7ff-a2e834d4d833`
+- **Improvement**: `9bc51839-b6cc-4241-8019-ff25bfb5b57d`
 
-### Workflow State IDs
-- **Triage**: `77da144d-fe13-4c3a-a53a-cfebd06c0cbe` (type: triage)
-- **spec needed**: `274beb99-bff8-4d7b-85cf-04d18affbc82` (type: unstarted)
-- **research needed**: `d0b89672-8189-45d6-b705-50afd6c94a91` (type: unstarted)
-- **research in progress**: `c41c5a23-ce25-471f-b70a-eff1dca60ffd` (type: unstarted)
-- **research in review**: `1a9363a7-3fae-42ee-a6c8-1fc714656f09` (type: unstarted)
-- **ready for plan**: `995011dd-3e36-46e5-b776-5a4628d06cc8` (type: unstarted)
-- **plan in progress**: `a52b4793-d1b6-4e5d-be79-b2254185eed0` (type: started)
-- **plan in review**: `15f56065-41ea-4d9a-ab8c-ec8e1a811a7a` (type: started)
-- **ready for dev**: `c25bae2f-856a-4718-aaa8-b469b7822f58` (type: started)
-- **in dev**: `6be18699-18d7-496e-a7c9-37d2ddefe612` (type: started)
-- **code review**: `8ca7fda1-08d4-48fb-a0cf-954246ccbe66` (type: started)
-- **Ready for Deploy**: `a3ad0b54-17bf-4ad3-b1c1-2f56c1f2515a` (type: started)
-- **Done**: `8159f431-fbc7-495f-a861-1ba12040f672` (type: completed)
-- **Backlog**: `6cf6b25a-054a-469b-9845-9bd9ab39ad76` (type: backlog)
-- **PostIts**: `a57f2ab3-c6f8-44c7-a36b-896154729338` (type: backlog)
-- **Todo**: `ddf85246-3a7c-4141-a377-09069812bbc3` (type: unstarted)
-- **Duplicate**: `2bc0e829-9853-4f76-ad34-e8732f062da2` (type: canceled)
-- **Canceled**: `14a28d0d-c6aa-4d8e-9ff2-9801d4cc7de1` (type: canceled)
+### Workflow State IDs (6-State Workflow)
+- **Triage**: `a6b6b8a3-60b0-4c4a-9e2a-9c260e5a3779` (type: backlog)
+- **Research**: `a00e069c-8dc7-458b-b2d9-6e9e994028cc` (type: unstarted)
+- **Planning**: `8ba588a0-5556-49cc-80e7-80e5ceab989f` (type: unstarted)
+- **In Dev**: `ac6d23fc-b099-43db-b9e0-9fad3cc8e8ab` (type: started)
+- **In Review**: `75d56f49-92a0-44d8-b454-db58b2a0c563` (type: started)
+- **Done**: `7561178a-10d8-493c-8019-10ba386c5d63` (type: completed)
+- **Duplicate**: `60c6c151-ee5f-4d40-bb5d-feea85637db1` (type: canceled)
 
-
-## Linear User IDs
-
-- allison: b157f9e4-8faf-4e7e-a598-dae6dec8a584
-- dex: 16765c85-2286-4c0f-ab49-0d4d79222ef5
-- sundeep: 0062104d-9351-44f5-b64c-d0b59acb516b
+### Linear User IDs
+- **Selman Ayan**: `2b2688ae-4241-4d5d-bce0-12c8df398366`

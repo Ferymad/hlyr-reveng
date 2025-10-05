@@ -1,6 +1,6 @@
 # MCP Integration Guidelines
 
-This project uses Kit MCP (codebase intelligence) and Ref MCP (documentation research) to enhance code analysis and research capabilities.
+This project uses Kit MCP (codebase intelligence), Ref MCP (documentation research), and Linear MCP (ticket management) to enhance code analysis and development workflow.
 
 ## Tool Selection Decision Tree
 
@@ -39,6 +39,20 @@ This project uses Kit MCP (codebase intelligence) and Ref MCP (documentation res
 - Reading specific URLs not available via Ref MCP
 - Fetching content from blogs, tutorials, or non-official sources
 
+### For Linear Ticket Management
+
+**Use Linear MCP when:**
+- Reading ticket details → `linear-ticket-reader` agent
+- Searching for related tickets → `linear-searcher` agent
+- Updating ticket status or comments → Via `/linear` command
+- Getting ticket context for implementation → `linear-ticket-reader` agent
+
+**Use `/linear` command directly when:**
+- Creating tickets from thoughts documents
+- Adding comments with conversation context
+- Manually updating ticket fields
+- Managing ticket workflow progression
+
 ## Repository Initialization
 
 At the start of codebase work:
@@ -72,6 +86,14 @@ Commands will automatically use MCP-enhanced agents when available:
   - Use when: Understanding module boundaries, tracing import chains
   - Note: Manual aggregation using extract_symbols + find_symbol_usages
   - For automated graphs: See thoughts/shared/research/dependency-analysis-options.md
+
+- **`linear-ticket-reader`**: Reads Linear ticket details using Linear MCP
+  - Use when: User mentions ticket ID, creating plans from tickets, understanding ticket context
+  - Returns: Full ticket details including description, status, comments, links
+
+- **`linear-searcher`**: Searches Linear tickets using Linear MCP
+  - Use when: Finding similar issues, searching by status/label, historical context gathering
+  - Returns: Organized ticket list grouped by status, priority, or date
 
 ## Graceful Degradation
 
