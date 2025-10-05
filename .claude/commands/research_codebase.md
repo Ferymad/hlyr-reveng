@@ -84,19 +84,19 @@ I'm ready to research the codebase. Please provide your research question or are
    - Use thoughts/ findings as supplementary historical context
    - Connect findings across different components
    - Include specific file paths and line numbers for reference
-   - Verify all thoughts/ paths are correct (e.g., thoughts/allison/ not thoughts/shared/ for personal files)
+   - Verify all thoughts/ paths are correct (use thoughts/shared/ for all files in Solo-Selman workspace)
    - Highlight patterns, connections, and architectural decisions
    - Answer the user's specific questions with concrete evidence
 
 5. **Gather metadata for the research document:**
    - Run the `hack/spec_metadata.sh` script to generate all relevant metadata
-   - Filename: `thoughts/shared/research/YYYY-MM-DD-ENG-XXXX-description.md`
-     - Format: `YYYY-MM-DD-ENG-XXXX-description.md` where:
+   - Filename: `thoughts/shared/research/YYYY-MM-DD-SOL-X-description.md`
+     - Format: `YYYY-MM-DD-SOL-X-description.md` where:
        - YYYY-MM-DD is today's date
-       - ENG-XXXX is the ticket number (omit if no ticket)
+       - SOL-X is the ticket number (omit if no ticket)
        - description is a brief kebab-case description of the research topic
      - Examples:
-       - With ticket: `2025-01-08-ENG-1478-parent-child-tracking.md`
+       - With ticket: `2025-01-08-SOL-1-parent-child-tracking.md`
        - Without ticket: `2025-01-08-authentication-flow.md`
 
 6. **Generate research document:**
@@ -206,10 +206,10 @@ I'm ready to research the codebase. Please provide your research question or are
 - **Path handling**: The thoughts/searchable/ directory contains hard links for searching
   - Always document paths by removing ONLY "searchable/" - preserve all other subdirectories
   - Examples of correct transformations:
-    - `thoughts/searchable/allison/old_stuff/notes.md` → `thoughts/allison/old_stuff/notes.md`
+    - `thoughts/searchable/shared/old_stuff/notes.md` → `thoughts/shared/old_stuff/notes.md`
     - `thoughts/searchable/shared/prs/123.md` → `thoughts/shared/prs/123.md`
     - `thoughts/searchable/global/shared/templates.md` → `thoughts/global/shared/templates.md`
-  - NEVER change allison/ to shared/ or vice versa - preserve the exact directory structure
+  - Preserve the exact directory structure
   - This ensures paths are correct for editing and navigation
 - **Frontmatter consistency**:
   - Always include frontmatter at the beginning of research documents

@@ -22,8 +22,8 @@ Please provide:
 
 I'll analyze this information and work with you to create a comprehensive plan.
 
-Tip: You can also invoke this command with a ticket file directly: `/create_plan thoughts/allison/tickets/eng_1234.md`
-For deeper analysis, try: `/create_plan think deeply about thoughts/allison/tickets/eng_1234.md`
+Tip: You can also invoke this command with a ticket file directly: `/create_plan thoughts/shared/tickets/sol_1.md`
+For deeper analysis, try: `/create_plan think deeply about thoughts/shared/tickets/sol_1.md`
 ```
 
 Then wait for the user's input.
@@ -33,7 +33,7 @@ Then wait for the user's input.
 ### Step 1: Context Gathering & Initial Analysis
 
 1. **Read all mentioned files immediately and FULLY**:
-   - Ticket files (e.g., `thoughts/allison/tickets/eng_1234.md`)
+   - Ticket files (e.g., `thoughts/shared/tickets/sol_1.md`)
    - Research documents
    - Related implementation plans
    - Any JSON/data files mentioned
@@ -48,11 +48,14 @@ Then wait for the user's input.
    - Use the **codebase-analyzer** agent to understand how the current implementation works
    - If relevant, use the **thoughts-locator** agent to find any existing thoughts documents about this feature
    - If a Linear ticket is mentioned, use the **linear-ticket-reader** agent to get full details
+   - If planning external package integration, use the **mcp-package-researcher** agent to understand package capabilities
+   - If analyzing dependency impact, use the **codebase-dependency-tracer** agent to map module relationships
 
    These agents will:
    - Find relevant source files, configs, and tests
    - Trace data flow and key functions
    - Return detailed explanations with file:line references
+   - All codebase agents automatically use Kit MCP when available for enhanced AST awareness and caching
 
 3. **Read all files identified by research tasks**:
    - After research tasks complete, read ALL files they identified as relevant
@@ -102,6 +105,8 @@ After getting initial clarifications:
    - **codebase-locator** - To find more specific files (e.g., "find all files that handle [specific component]")
    - **codebase-analyzer** - To understand implementation details (e.g., "analyze how [system] works")
    - **codebase-pattern-finder** - To find similar features we can model after
+   - **mcp-package-researcher** - To research external packages combining docs + source code (e.g., "research Stripe webhook integration patterns")
+   - **codebase-dependency-tracer** - To trace dependency chains and understand module boundaries (e.g., "map dependencies for auth module")
 
    **For historical context:**
    - **thoughts-locator** - To find any research, plans, or decisions about this area
@@ -109,6 +114,10 @@ After getting initial clarifications:
 
    **For related tickets:**
    - **linear-searcher** - To find similar issues or past implementations
+
+   **For external documentation:**
+   - **external-doc-researcher** - To find framework documentation, API guides, and best practices
+   - **IMPORTANT**: MCP-enhanced agents automatically use Kit MCP (codebase intelligence) and Ref MCP (documentation research) when available
 
    Each agent knows how to:
    - Find the right files and code patterns
@@ -163,13 +172,13 @@ Once aligned on approach:
 
 After structure approval:
 
-1. **Write the plan** to `thoughts/shared/plans/YYYY-MM-DD-ENG-XXXX-description.md`
-   - Format: `YYYY-MM-DD-ENG-XXXX-description.md` where:
+1. **Write the plan** to `thoughts/shared/plans/YYYY-MM-DD-SOL-X-description.md`
+   - Format: `YYYY-MM-DD-SOL-X-description.md` where:
      - YYYY-MM-DD is today's date
-     - ENG-XXXX is the ticket number (omit if no ticket)
+     - SOL-X is the ticket number (omit if no ticket)
      - description is a brief kebab-case description
    - Examples:
-     - With ticket: `2025-01-08-ENG-1478-parent-child-tracking.md`
+     - With ticket: `2025-01-08-SOL-1-parent-child-tracking.md`
      - Without ticket: `2025-01-08-improve-error-handling.md`
 2. **Use this template structure**:
 
@@ -263,7 +272,7 @@ After structure approval:
 
 ## References
 
-- Original ticket: `thoughts/allison/tickets/eng_XXXX.md`
+- Original ticket: `thoughts/shared/tickets/sol_X.md`
 - Related research: `thoughts/shared/research/[relevant].md`
 - Similar implementation: `[file:line]`
 ````
@@ -276,7 +285,7 @@ After structure approval:
 2. **Present the draft plan location**:
    ```
    I've created the initial implementation plan at:
-   `thoughts/shared/plans/YYYY-MM-DD-ENG-XXXX-description.md`
+   `thoughts/shared/plans/YYYY-MM-DD-SOL-X-description.md`
 
    Please review it and let me know:
    - Are the phases properly scoped?
@@ -364,6 +373,13 @@ After structure approval:
 - [ ] Feature works correctly on mobile devices
 ```
 
+**MCP-Enhanced Verification:**
+If Kit MCP is available during implementation, plans may optionally include:
+- [ ] Pre-commit code review: Use Kit MCP `review_diff` tool on staged changes
+- [ ] Dependency impact verified: Use `codebase-dependency-tracer` to confirm no unintended dependencies
+
+Note: These are optional enhancements - use judgment on whether formal AI review is needed for the specific change.
+
 ## Common Patterns
 
 ### For Database Changes:
@@ -424,7 +440,7 @@ tasks = [
 User: /implementation_plan
 Assistant: I'll help you create a detailed implementation plan...
 
-User: We need to add parent-child tracking for Claude sub-tasks. See thoughts/allison/tickets/eng_1478.md
+User: We need to add parent-child tracking for Claude sub-tasks. See thoughts/shared/tickets/sol_1.md
 Assistant: Let me read that ticket file completely first...
 
 [Reads file fully]

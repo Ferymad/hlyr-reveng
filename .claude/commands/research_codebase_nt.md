@@ -84,13 +84,13 @@ I'm ready to research the codebase. Please provide your research question or are
 
 5. **Gather metadata for the research document:**
    - Run Bash() tools to generate all relevant metadata
-   - Filename: `thoughts/shared/research/YYYY-MM-DD-ENG-XXXX-description.md`
-     - Format: `YYYY-MM-DD-ENG-XXXX-description.md` where:
+   - Filename: `thoughts/shared/research/YYYY-MM-DD-SOL-X-description.md`
+     - Format: `YYYY-MM-DD-SOL-X-description.md` where:
        - YYYY-MM-DD is today's date
-       - ENG-XXXX is the ticket number (omit if no ticket)
+       - SOL-X is the ticket number (omit if no ticket)
        - description is a brief kebab-case description of the research topic
      - Examples:
-       - With ticket: `2025-01-08-ENG-1478-parent-child-tracking.md`
+       - With ticket: `2025-01-08-SOL-1-parent-child-tracking.md`
        - Without ticket: `2025-01-08-authentication-flow.md`
 
 6. **Generate research document:**

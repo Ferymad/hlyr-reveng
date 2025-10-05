@@ -206,7 +206,7 @@ When user wants to add a comment to a ticket:
    - Include relevant file references with backticks and GitHub links
 
 3. **File reference formatting:**
-   - Wrap paths in backticks: `thoughts/allison/example.md`
+   - Wrap paths in backticks: `thoughts/shared/example.md`
    - Add GitHub link after: `([View](url))`
    - Do this for both thoughts/ and code files mentioned
 
