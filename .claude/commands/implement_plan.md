@@ -46,6 +46,29 @@ After implementing a phase:
 
 Don't let verification interrupt your flow - batch it at natural stopping points.
 
+## Optional: Pre-Commit Code Review
+
+Before committing your changes, you may optionally request an AI code review using Kit MCP:
+
+1. **Stage your changes**: `git add <files>`
+2. **Use Kit MCP review_diff tool**: `review_diff(repo_id, "--staged")`
+3. **Review feedback and address issues** before committing
+4. **Then proceed with commit**: `git commit -m "..."`
+
+**When to use this:**
+- Complex changes spanning multiple files
+- Changes to critical system components
+- When you want validation before committing
+- When adding new patterns or architectural changes
+
+**When to skip:**
+- Simple, straightforward changes
+- Documentation-only updates
+- Changes you're very confident about
+- When you've already done manual review
+
+This is optional - use your judgment on whether formal AI review is needed. Kit MCP's `review_diff` automatically uses the repository context and provides detailed feedback on potential issues, code quality, and best practices.
+
 ## If You Get Stuck
 
 When something isn't working as expected:
