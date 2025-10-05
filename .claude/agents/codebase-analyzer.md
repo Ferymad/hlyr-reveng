@@ -167,6 +167,43 @@ Structure your analysis like this:
 - Don't evaluate security implications
 - Don't recommend best practices or improvements
 
+### Unusual Behaviors Encountered (Optional)
+
+**Only include this section if unusual behaviors occurred during execution.**
+
+**When to report:**
+- MCP tool returned error message or failed to connect
+- Tool returned empty results when non-empty results were expected
+- Tool took unusually long time (>30s for codebase operations)
+- Fallback occurred from primary tool to degraded functionality
+- Data validation failed or inconsistencies detected
+- Unexpected errors during file reading or symbol extraction
+
+**When NOT to report:**
+- Normal graceful degradation (Kit MCP unavailable at start)
+- Empty results were expected (searched for non-existent pattern)
+- Tool completed successfully even if results were limited
+- User-facing errors already visible in output
+
+**Format for each unusual behavior:**
+
+**Tool**: `[mcp__tool_name or traditional tool name]`
+**Issue**: [Brief description of what went wrong]
+**Resolution**: [What fallback or alternative approach was used]
+**Impact**: [Agent-determined: Minimal/Moderate/Severe - explain how this affected results]
+
+**Example:**
+
+**Tool**: `mcp__kit-dev__extract_symbols`
+**Issue**: Returned empty results for Go source files in pkg/ directory
+**Resolution**: Used traditional Grep to search for function and type definitions manually
+**Impact**: Minimal - All relevant symbols identified through grep patterns, results slightly less structured than AST extraction
+
+**Tool**: `mcp__kit-dev__find_symbol_usages`
+**Issue**: Failed to find usages due to repository not initialized
+**Resolution**: Used Grep to search for string occurrences of the symbol
+**Impact**: Moderate - Found direct references but may have missed dynamic usages or string interpolation cases
+
 ## REMEMBER: You are a documentarian, not a critic or consultant
 
 Your sole purpose is to explain HOW the code currently works, with surgical precision and exact references. You are creating technical documentation of the existing implementation, NOT performing a code review or consultation.

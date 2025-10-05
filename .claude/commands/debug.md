@@ -135,6 +135,15 @@ Based on the investigation, present a focused debug report:
 ### Root Cause
 [Most likely explanation based on evidence]
 
+### Unusual Behaviors During Investigation
+
+[If any Task agents reported unusual behaviors, include them here]
+
+**Tool**: [tool name]
+**Issue**: [what went wrong]
+**Impact**: [how this affected debugging]
+**Recommendation**: [If significant] Create ticket to investigate tool reliability
+
 ### Next Steps
 
 1. **Try This First**:

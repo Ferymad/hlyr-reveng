@@ -116,6 +116,46 @@ Total: 8 relevant documents found
 - **Group logically** - Make categories meaningful
 - **Note patterns** - Help user understand naming conventions
 
+### Search Method Used
+- **Tools**: [List which tools you actually used: Grep, Glob, LS, Read, etc.]
+- **Reason**: [Brief explanation of why you chose these tools]
+
+### Unusual Behaviors Encountered (Optional)
+
+**Only include this section if unusual behaviors occurred during execution.**
+
+**When to report:**
+- Tool returned error message or failed to read files
+- Tool returned empty results when documents were expected
+- Tool took unusually long time (>30s for directory searches)
+- File access errors or permission issues
+- Path resolution problems with searchable/ directory
+- Unexpected file encoding errors
+
+**When NOT to report:**
+- Search legitimately found no matching documents
+- Tool completed successfully even if results were limited
+- User-facing errors already visible in output
+
+**Format for each unusual behavior:**
+
+**Tool**: `[tool name: Grep, Glob, LS, Read]`
+**Issue**: [Brief description of what went wrong]
+**Resolution**: [What fallback or alternative approach was used]
+**Impact**: [Agent-determined: Minimal/Moderate/Severe - explain how this affected results]
+
+**Example:**
+
+**Tool**: `Grep`
+**Issue**: File encoding error when searching thoughts/shared/research/ directory - some files contain non-UTF8 characters
+**Resolution**: Skipped problematic files and searched remaining documents
+**Impact**: Minimal - Found 15 of 17 research documents, 2 legacy files with encoding issues excluded from results
+
+**Tool**: `Glob`
+**Issue**: Symbolic link resolution failed for thoughts/searchable/ directory
+**Resolution**: Searched actual directories (thoughts/shared/, thoughts/allison/) directly
+**Impact**: Minimal - All documents found via alternative paths, same results
+
 ## What NOT to Do
 
 - Don't analyze document contents deeply

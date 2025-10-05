@@ -44,6 +44,9 @@ think deeply about the findings
 3b. identify potential implementation approaches
 3c. note any risks or concerns discovered
 3d. Research is automatically available (written to thoughts submodule)
+3e. Check all subagent outputs for "Unusual Behaviors Encountered" section
+3f. If found: Include summary in research output with impact assessment
+3g. If Moderate/Severe impact: Suggest ticket creation for investigation
 
 4. update the ticket:
 4a. attach the research document to the ticket using the MCP tools with proper link formatting

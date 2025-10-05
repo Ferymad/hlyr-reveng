@@ -87,6 +87,11 @@ I'm ready to research the codebase. Please provide your research question or are
    - Verify all thoughts/ paths are correct (use thoughts/shared/ for all files in Solo-Selman workspace)
    - Highlight patterns, connections, and architectural decisions
    - Answer the user's specific questions with concrete evidence
+   - **Check for unusual behaviors**: When reading subagent outputs, check if any include "Unusual Behaviors Encountered" section
+     - If found with Moderate or Severe impact: Add warning to user suggesting ticket creation
+     - If found with Minimal impact: Mention briefly in synthesis
+     - Example: "⚠️ Note: The codebase-locator agent encountered unusual behavior (Kit MCP connection timeout). See details at end of response. Consider creating a Linear ticket to investigate if this recurs."
+     - Include unusual behavior details in a dedicated section at the end of research document
 
 5. **Gather metadata for the research document:**
    - Run the `hack/spec_metadata.sh` script to generate all relevant metadata
@@ -158,6 +163,17 @@ I'm ready to research the codebase. Please provide your research question or are
 
      ## Open Questions
      [Any areas that need further investigation]
+
+     ## Unusual Behaviors Reported (if any)
+     [Include any unusual behaviors reported by subagents during research]
+
+     **Agent**: [agent name]
+     **Tool**: [tool that failed]
+     **Issue**: [description]
+     **Resolution**: [what fallback was used]
+     **Impact**: [impact level and explanation]
+
+     **Recommendation**: [If Moderate/Severe] Consider creating a Linear ticket to investigate this issue for future sessions.
      ```
 
 7. **Add GitHub permalinks (if applicable):**

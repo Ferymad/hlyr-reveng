@@ -148,6 +148,13 @@ After getting initial clarifications:
    Which approach aligns best with your vision?
    ```
 
+5. **Check subagent reports for unusual behaviors:**
+   - Review all subagent outputs for "Unusual Behaviors Encountered" section
+   - If any agent reports Moderate or Severe impact:
+     - Mention in synthesis: "⚠️ During research, [agent-name] encountered [brief issue]. Impact: [Moderate/Severe]. Recommend creating Linear ticket."
+     - Include details in planning document notes
+   - If Minimal impact: Note in plan but no ticket needed
+
 ### Step 3: Plan Structure Development
 
 Once aligned on approach:

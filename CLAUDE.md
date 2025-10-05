@@ -134,6 +134,48 @@ All workflows work with or without MCP:
 - **If MCP unavailable:** Traditional Grep/Read/Glob tools work as fallback
 - **No workflow changes:** Agents automatically choose best available tools
 
+## Error Reporting and Unusual Behaviors
+
+All agents include self-reporting mechanisms to provide visibility into tool usage and issues:
+
+### Search Method Used (Mandatory)
+Every agent output includes a "Search Method Used" section reporting:
+- Which tools were actually used
+- Why those tools were chosen
+- Implicit indication of fallback decisions
+
+### Unusual Behaviors Encountered (Optional)
+Agents report unusual behaviors when they occur:
+
+**Reported conditions:**
+- MCP tool failures (connection errors, timeouts)
+- Empty results when data was expected
+- Fallback from primary tool to degraded functionality
+- Performance issues (slow responses, timeouts)
+- Data inconsistencies or validation failures
+
+**Report format:**
+- **Tool**: Which tool encountered the issue
+- **Issue**: What went wrong
+- **Resolution**: What fallback or alternative was used
+- **Impact**: Agent-determined assessment (Minimal/Moderate/Severe)
+
+**When main agents encounter unusual behavior reports:**
+- Minimal impact: Noted in synthesis, no action needed
+- Moderate/Severe impact: Warning indicator (⚠️) + suggestion to create Linear ticket for investigation
+
+**Example from agent output:**
+```markdown
+### Unusual Behaviors Encountered
+
+**Tool**: `mcp__kit-dev__grep_ast`
+**Issue**: Repository not initialized - repo_id was null
+**Resolution**: Fell back to traditional Grep tool
+**Impact**: Minimal - Results less precise but all relevant files found
+```
+
+This text-based self-reporting requires no parsing infrastructure - main agents read and comprehend these sections naturally through LLM capabilities.
+
 ## Best Practices
 
 1. **Incremental Symbol Extraction:** `extract_symbols` results are cached—use it liberally

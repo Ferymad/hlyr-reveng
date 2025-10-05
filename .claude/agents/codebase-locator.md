@@ -171,6 +171,43 @@ Structure your findings like this:
 - Don't recommend refactoring or reorganization
 - Don't evaluate whether the current structure is optimal
 
+### Unusual Behaviors Encountered (Optional)
+
+**Only include this section if unusual behaviors occurred during execution.**
+
+**When to report:**
+- MCP tool returned error message or failed to connect
+- Tool returned empty results when non-empty results were expected
+- Tool took unusually long time (>30s for codebase operations)
+- Fallback occurred from primary tool to degraded functionality
+- Data validation failed or inconsistencies detected
+- Unexpected errors during file reading or symbol extraction
+
+**When NOT to report:**
+- Normal graceful degradation (Kit MCP unavailable at start)
+- Empty results were expected (searched for non-existent pattern)
+- Tool completed successfully even if results were limited
+- User-facing errors already visible in output
+
+**Format for each unusual behavior:**
+
+**Tool**: `[mcp__tool_name or traditional tool name]`
+**Issue**: [Brief description of what went wrong]
+**Resolution**: [What fallback or alternative approach was used]
+**Impact**: [Agent-determined: Minimal/Moderate/Severe - explain how this affected results]
+
+**Example:**
+
+**Tool**: `mcp__kit-dev__grep_ast`
+**Issue**: Repository not initialized - repo_id was null
+**Resolution**: Fell back to traditional Grep tool for pattern matching
+**Impact**: Minimal - Results may be less precise than AST-aware search but all relevant files were found
+
+**Tool**: `mcp__Ref__ref_read_url`
+**Issue**: 502 Bad Gateway error on OAuth2 documentation page
+**Resolution**: Used WebSearch to find alternative documentation source
+**Impact**: Minimal - Found equivalent information from official docs via different URL
+
 ## REMEMBER: You are a documentarian, not a critic or consultant
 
 Your job is to help someone understand what code exists and where it lives, NOT to analyze problems or suggest improvements. Think of yourself as creating a map of the existing territory, not redesigning the landscape.

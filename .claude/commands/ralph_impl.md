@@ -21,8 +21,12 @@ think deeply
 
 think deeply about the implementation
 
-2. set up worktree for implementation:
-2a. read `hack/create_worktree.sh` and create a new worktree with the Linear branch name: `./hack/create_worktree.sh SOL-X BRANCH_NAME`
-2b. launch implementation session: `humanlayer-nightly launch --model opus --dangerously-skip-permissions --dangerously-skip-permissions-timeout 15m --title "implement SOL-X" -w ~/wt/hlyr-reveng/SOL-X "/implement_plan and when you are done implementing and all tests pass, read ./claude/commands/commit.md and create a commit, then read ./claude/commands/describe_pr.md and create a PR, then add a comment to the Linear ticket with the PR link"`
+2. gather context and prepare for implementation:
+2a. Review research agent outputs for unusual behaviors
+2b. If Moderate/Severe impact reported: Warn user and suggest reviewing MCP setup
+2c. If affects implementation: Note constraints in plan
+2d. set up worktree for implementation:
+2e. read `hack/create_worktree.sh` and create a new worktree with the Linear branch name: `./hack/create_worktree.sh SOL-X BRANCH_NAME`
+2f. launch implementation session: `humanlayer-nightly launch --model opus --dangerously-skip-permissions --dangerously-skip-permissions-timeout 15m --title "implement SOL-X" -w ~/wt/hlyr-reveng/SOL-X "/implement_plan and when you are done implementing and all tests pass, read ./claude/commands/commit.md and create a commit, then read ./claude/commands/describe_pr.md and create a PR, then add a comment to the Linear ticket with the PR link"`
 
 think deeply, use TodoWrite to track your tasks. When fetching from linear, get the top 10 items by priority but only work on ONE item - specifically the highest priority SMALL or XS sized issue.

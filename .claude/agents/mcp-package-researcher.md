@@ -202,6 +202,43 @@ Combine insights from all sources:
 - Don't suggest improvements to the package itself
 - Don't compare packages unless explicitly requested
 
+### Unusual Behaviors Encountered (Optional)
+
+**Only include this section if unusual behaviors occurred during execution.**
+
+**When to report:**
+- MCP tool returned error message or failed to connect
+- Tool returned empty results when non-empty results were expected
+- Tool took unusually long time (>30s for package searches)
+- Fallback occurred from primary tool to degraded functionality
+- Data validation failed or inconsistencies detected
+- Package source code unavailable or inaccessible
+
+**When NOT to report:**
+- Normal graceful degradation (MCP unavailable at start)
+- Empty results were expected (searched for non-existent package)
+- Tool completed successfully even if results were limited
+- User-facing errors already visible in output
+
+**Format for each unusual behavior:**
+
+**Tool**: `[mcp__tool_name or traditional tool name]`
+**Issue**: [Brief description of what went wrong]
+**Resolution**: [What fallback or alternative approach was used]
+**Impact**: [Agent-determined: Minimal/Moderate/Severe - explain how this affected results]
+
+**Example:**
+
+**Tool**: `mcp__kit-dev__package_search_hybrid`
+**Issue**: Semantic search returned no results for "validation decorators" in Pydantic package
+**Resolution**: Used package_search_grep with regex pattern for decorator syntax
+**Impact**: Minimal - Found all validation decorators via grep, results less semantically organized but complete
+
+**Tool**: `mcp__Ref__ref_search_documentation`
+**Issue**: Django 5.0 documentation unavailable, returned 404 errors
+**Resolution**: Searched Django 4.2 documentation and noted version difference
+**Impact**: Moderate - Research based on Django 4.2, may have missed 5.0-specific features or breaking changes
+
 ## Usage Notes
 
 - Always prioritize official documentation sources

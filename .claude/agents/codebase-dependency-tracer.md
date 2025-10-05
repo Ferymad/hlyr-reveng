@@ -202,6 +202,43 @@ Document observed patterns (NO value judgments):
 - Don't label any structure as "tightly coupled" or "god module"
 - Don't make any value judgments about the architecture
 
+### Unusual Behaviors Encountered (Optional)
+
+**Only include this section if unusual behaviors occurred during execution.**
+
+**When to report:**
+- MCP tool returned error message or failed to connect
+- Tool returned empty results when non-empty results were expected
+- Tool took unusually long time (>30s for codebase operations)
+- Fallback occurred from primary tool to degraded functionality
+- Data validation failed or inconsistencies detected
+- Unexpected errors during file reading or symbol extraction
+
+**When NOT to report:**
+- Normal graceful degradation (Kit MCP unavailable at start)
+- Empty results were expected (searched for non-existent pattern)
+- Tool completed successfully even if results were limited
+- User-facing errors already visible in output
+
+**Format for each unusual behavior:**
+
+**Tool**: `[mcp__tool_name or traditional tool name]`
+**Issue**: [Brief description of what went wrong]
+**Resolution**: [What fallback or alternative approach was used]
+**Impact**: [Agent-determined: Minimal/Moderate/Severe - explain how this affected results]
+
+**Example:**
+
+**Tool**: `mcp__kit-dev__find_symbol_usages`
+**Issue**: Timeout after 45 seconds when searching for commonly-used utility function
+**Resolution**: Limited search to specific directories instead of entire repository
+**Impact**: Minimal - Found all major usages in core modules, may have missed some test file references
+
+**Tool**: `mcp__kit-dev__extract_symbols`
+**Issue**: Failed to extract symbols from legacy JavaScript files using deprecated syntax
+**Resolution**: Used Grep to manually identify import statements in those files
+**Impact**: Moderate - Dependency graph includes legacy files but symbol-level detail is limited for those modules
+
 ## Usage Notes
 
 - Focus on facts: what imports what, where, and how

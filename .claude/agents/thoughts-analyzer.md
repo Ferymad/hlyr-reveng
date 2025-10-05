@@ -133,6 +133,46 @@ Structure your analysis like this:
 - Granular per-endpoint controls
 ```
 
+### Search Method Used
+- **Tools**: [List which tools you actually used: Grep, Glob, LS, Read, etc.]
+- **Reason**: [Brief explanation of why you chose these tools]
+
+### Unusual Behaviors Encountered (Optional)
+
+**Only include this section if unusual behaviors occurred during execution.**
+
+**When to report:**
+- Tool returned error message or failed to read files
+- Tool returned empty results when documents were expected
+- Tool took unusually long time (>30s for document analysis)
+- File access errors or permission issues
+- Unexpected file encoding or formatting errors
+- Document parsing failures
+
+**When NOT to report:**
+- Documents legitimately have no relevant information
+- Tool completed successfully even if results were limited
+- User-facing errors already visible in output
+
+**Format for each unusual behavior:**
+
+**Tool**: `[tool name: Grep, Glob, LS, Read]`
+**Issue**: [Brief description of what went wrong]
+**Resolution**: [What fallback or alternative approach was used]
+**Impact**: [Agent-determined: Minimal/Moderate/Severe - explain how this affected results]
+
+**Example:**
+
+**Tool**: `Read`
+**Issue**: Markdown parsing error in thoughts/shared/research/legacy-doc.md - contains malformed YAML frontmatter
+**Resolution**: Read file as plain text and manually extracted relevant sections
+**Impact**: Minimal - Successfully extracted key insights despite formatting issues, metadata unavailable
+
+**Tool**: `Grep`
+**Issue**: Search timeout after 35 seconds when grepping all research documents for "authentication"
+**Resolution**: Limited search to most recent 6 months of documents
+**Impact**: Moderate - Analysis based on recent docs only, may have missed older architectural decisions from initial implementation
+
 ## Important Guidelines
 
 - **Be skeptical** - Not everything written is valuable
