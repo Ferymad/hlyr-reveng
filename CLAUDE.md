@@ -110,4 +110,49 @@ All workflows work with or without MCP:
 4. **Verify Findings:** Kit MCP tools may return large result sets—always review and filter
 5. **Language Support:** Kit MCP works best with Python/TypeScript; use built-in tools for other languages
 
+## Thoughts Architecture
+
+This repository uses a **Git Submodule** for the thoughts system.
+
+**Structure:**
+- `thoughts/` - Git Submodule pointing to https://github.com/Ferymad/hlyr-reveng-thoughts
+- Thoughts have independent version control and commit history
+- Main repository only tracks submodule reference (commit hash)
+
+**Benefits:**
+- Clean main repository history (thoughts don't clutter commits)
+- Better organization and scalability
+- No symlinks - full compatibility with Claude Code file tools
+- Independent thoughts versioning
+
+**Workflow:**
+
+When creating/updating thoughts documents:
+```bash
+# Work in thoughts submodule
+cd thoughts/
+git add shared/research/my-research.md
+git commit -m "Add research on topic X"
+git push
+
+# Update main repo submodule reference (optional)
+cd ..
+git add thoughts
+git commit -m "Update thoughts reference"
+git push
+```
+
+When pulling latest thoughts:
+```bash
+git submodule update --remote thoughts
+```
+
+**First-time clone:**
+```bash
+git clone <repository>
+git submodule update --init
+```
+
+**Note:** No `humanlayer thoughts sync` commands needed. Thoughts are immediately available after writing to files.
+
 Remember: Better context = Better code suggestions

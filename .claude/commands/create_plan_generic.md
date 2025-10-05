@@ -279,8 +279,9 @@ After structure approval:
 
 ### Step 5: Sync and Review
 
-1. **Sync the thoughts directory**:
-   - This ensures the plan is properly indexed and available
+1. **Plan is immediately available**:
+   - Written to thoughts submodule and ready for use
+   - Commit to preserve in thoughts repository when ready
 
 2. **Present the draft plan location**:
    ```

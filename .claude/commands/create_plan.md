@@ -280,9 +280,9 @@ After structure approval:
 
 ### Step 5: Sync and Review
 
-1. **Sync the thoughts directory**:
-   - Run `humanlayer thoughts sync` to sync the newly created plan
-   - This ensures the plan is properly indexed and available
+1. **Commit the plan to thoughts repository**:
+   - The plan is already written to the thoughts submodule
+   - No sync needed - file is immediately available for reading
 
 2. **Present the draft plan location**:
    ```
@@ -301,7 +301,7 @@ After structure approval:
    - Adjust technical approach
    - Clarify success criteria (both automated and manual)
    - Add/remove scope items
-   - After making changes, run `humanlayer thoughts sync` again
+   - After making changes, the file is immediately available (no sync needed)
 
 4. **Continue refining** until the user is satisfied
 

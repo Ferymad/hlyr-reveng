@@ -61,8 +61,18 @@ type: implementation_strategy
 ```
 ---
 
-### 3. Approve and Sync
-Ask the user to review and approve the document. if they request any changes, you should make them and ask for approval again. Once the user approves the documents, you should run `humanlayer thoughts sync` to save the document.
+### 3. Approve and Commit
+Ask the user to review and approve the document. if they request any changes, you should make them and ask for approval again. Once the user approves the document, commit it to the thoughts repository:
+
+```bash
+cd thoughts/
+git add .
+git commit -m "Add handoff: <description>"
+git push
+cd ..
+git add thoughts  # Update submodule reference
+git commit -m "Update thoughts reference"
+```
 
 Once this is completed, you should respond to the user with the template between <template_response></template_response> XML tags. do NOT include the tags in your response.
 

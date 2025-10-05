@@ -67,10 +67,10 @@ You are tasked with generating a comprehensive pull request description followin
      - Write a concise changelog entry
    - Ensure all checklist items are addressed (checked or explained)
 
-9. **Save and sync the description:**
+9. **Save the description:**
    - Write the completed description to `thoughts/shared/prs/{number}_description.md`
-   - Run `humanlayer thoughts sync` to sync the thoughts directory
    - Show the user the generated description
+   - Description is immediately available for use
 
 10. **Update the PR:**
    - Update the PR description directly: `gh pr edit {number} --body-file thoughts/shared/prs/{number}_description.md`
