@@ -1,0 +1,3 @@
+[submodule "thoughts"]
+	path = thoughts
+	url = https://github.com/Ferymad/hlyr-reveng-thoughts.git
