@@ -63,6 +63,38 @@ At the start of codebase work:
 
 **Important:** Repository IDs (e.g., `repo_0`) reset between Claude Code sessions. Re-initialize when starting a new session.
 
+## Large Repository Handling
+
+### Known Limitation: Subdirectory .gitignore Support
+
+Kit-dev's `get_file_tree` currently only loads the root `.gitignore` file. Repositories with subdirectory `.gitignore` files (common in monorepos) may return excessive file counts.
+
+**Symptoms:**
+- Token overflow errors (>25k tokens)
+- File count much higher than `git ls-files`
+- Includes node_modules, venv, or other ignored directories
+
+**Workaround**: Use targeted tools instead of full tree:
+
+```bash
+# Instead of get_file_tree:
+Glob("**/*.py")           # Find Python files
+Grep("pattern", type="ts") # Search TypeScript
+LS specific/directory/     # List specific paths
+```
+
+**When to use get_file_tree**:
+- Small repos (<1000 files)
+- Repos with complete root .gitignore
+- After verifying file count with: `git ls-files | wc -l`
+
+**When to use alternatives**:
+- Large repos (>5000 files)
+- Monorepos with multiple node_modules
+- Repos with subdirectory .gitignore files
+
+**Fix Status**: Upstream fix in progress (see `thoughts/shared/plans/2025-10-05-SOL-1-kit-mcp-gitignore-fix.md`)
+
 ## Agent Usage
 
 Commands will automatically use MCP-enhanced agents when available:

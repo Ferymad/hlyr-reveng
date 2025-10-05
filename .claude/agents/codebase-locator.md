@@ -83,6 +83,10 @@ First, think deeply about the most effective search patterns for the requested f
 - Git-aware (respects .gitignore automatically)
 - Faster than recursive LS calls
 - Returns full tree structure in one call
+  **Known Limitation**: Only loads root .gitignore (subdirectory .gitignore files ignored)
+  - May return excessive files on large monorepos
+  - If token overflow occurs, fall back to Glob/Grep/LS immediately
+  - Verify with: Compare `git ls-files | wc -l` vs `get_file_tree` result count
 
 **For listing symbols in files/directories:**
 - Use `extract_symbols` to get structured symbol inventory
