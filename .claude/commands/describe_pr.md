@@ -27,7 +27,23 @@ You are tasked with generating a comprehensive pull request description followin
    - Review the base branch: `gh pr view {number} --json baseRefName`
    - Get PR metadata: `gh pr view {number} --json url,title,number,state`
 
-5. **Analyze the changes thoroughly:** (ultrathink about the code changes, their architectural implications, and potential impacts)
+5. **Optional: AI code review with Kit MCP:**
+   - If you want automated code review before writing the description, use Kit MCP's `review_diff` tool:
+     1. Initialize repository: `open_repository` to load context
+     2. Run review: `review_diff(repo_id, "origin/main...HEAD")` or use specific PR branch
+     3. Incorporate findings into the PR description
+   - **When to use this:**
+     - Complex PRs with architectural changes
+     - PRs touching critical components
+     - When you want validation before describing
+     - Large diffs that need systematic review
+   - **When to skip:**
+     - Simple documentation updates
+     - Small, straightforward changes
+     - When human review already completed
+   - **Note**: AI review is supplementary to human review, not a replacement
+
+6. **Analyze the changes thoroughly:** (ultrathink about the code changes, their architectural implications, and potential impacts)
    - Read through the entire diff carefully
    - For context, read any files that are referenced but not shown in the diff
    - Understand the purpose and impact of each change

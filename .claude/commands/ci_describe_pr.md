@@ -26,14 +26,30 @@ You are tasked with generating a comprehensive pull request description followin
    - Review the base branch: `gh pr view {number} --json baseRefName`
    - Get PR metadata: `gh pr view {number} --json url,title,number,state`
 
-5. **Analyze the changes thoroughly:** (ultrathink about the code changes, their architectural implications, and potential impacts)
+5. **Optional: AI code review with Kit MCP:**
+   - If you want automated code review before writing the description, use Kit MCP's `review_diff` tool:
+     1. Initialize repository: `open_repository` to load context
+     2. Run review: `review_diff(repo_id, "origin/main...HEAD")` or use specific PR branch
+     3. Incorporate findings into the PR description
+   - **When to use this:**
+     - Complex PRs with architectural changes
+     - PRs touching critical components
+     - When you want validation before describing
+     - Large diffs that need systematic review
+   - **When to skip:**
+     - Simple documentation updates
+     - Small, straightforward changes
+     - When human review already completed
+   - **Note**: AI review is supplementary to human review, not a replacement
+
+6. **Analyze the changes thoroughly:** (ultrathink about the code changes, their architectural implications, and potential impacts)
    - Read through the entire diff carefully
    - For context, read any files that are referenced but not shown in the diff
    - Understand the purpose and impact of each change
    - Identify user-facing changes vs internal implementation details
    - Look for breaking changes or migration requirements
 
-6. **Handle verification requirements:**
+7. **Handle verification requirements:**
    - Look for any checklist items in the "How to verify it" section of the template
    - For each verification step:
      - If it's a command you can run (like `make check test`, `npm test`, etc.), run it
@@ -42,7 +58,7 @@ You are tasked with generating a comprehensive pull request description followin
      - If it requires manual testing (UI interactions, external services), leave unchecked and note for user
    - Document any verification steps you couldn't complete
 
-7. **Generate the description:**
+8. **Generate the description:**
    - Fill out each section from the template thoroughly:
      - Answer each question/section based on your analysis
      - Be specific about problems solved and changes made
@@ -51,12 +67,12 @@ You are tasked with generating a comprehensive pull request description followin
      - Write a concise changelog entry
    - Ensure all checklist items are addressed (checked or explained)
 
-8. **Save and sync the description:**
+9. **Save and sync the description:**
    - Write the completed description to `thoughts/shared/prs/{number}_description.md`
    - Run `humanlayer thoughts sync` to sync the thoughts directory
    - Show the user the generated description
 
-9. **Update the PR:**
+10. **Update the PR:**
    - Update the PR description directly: `gh pr edit {number} --body-file thoughts/shared/prs/{number}_description.md`
    - Confirm the update was successful
    - If any verification steps remain unchecked, remind the user to complete them before merging
